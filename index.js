@@ -4,7 +4,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 let LoggedUserImg="https://i.ibb.co/Dr2ZcHQ/IMG-20231027-WA0082.jpg";
-app.get('/users/loggedin', (req, res) => {
+app.get('/users/loggedIn', (req, res) => {
     res.json({id:1,userName: "Aly Hany", gender: "M",src:LoggedUserImg});
 });
 let data = [
@@ -16,6 +16,7 @@ let data = [
         gender: "M",
         postedBy:2
     },
+    
     {
         id: 3,
         userName: "Mohamed Elneny",
@@ -57,8 +58,13 @@ app.get('/comments/get/:id',(req,res)=>{
     }
 
 })
-app.get('/comments/getall', (req, res) => {
+app.get('/comments/getAll', (req, res) => {
     res.json(data);
+})
+app.get('/comments/myComments/:id',(req,res)=>{
+    const id = parseInt(req.params.id,10);
+    const myComments = data.filter(comment=>comment.postedBy===id);
+    res.json(myComments);
 })
 app.post('/comments/add',(req,res)=>{
 let comment = req.body;
