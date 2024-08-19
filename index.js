@@ -3,50 +3,77 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 app.use(express.json());
-let LoggedUserImg="https://i.ibb.co/Dr2ZcHQ/IMG-20231027-WA0082.jpg";
-app.get('/users/loggedIn', (req, res) => {
-    res.json({id:1,userName: "Aly Hany", gender: "M",src:LoggedUserImg});
-});
-let data = [
+let comments = [
     {
         id: 2,
-        userName: "Samir Kamouna",
         comment: "I found this article very informative.",
         date: "Sep 26, 2024",
-        gender: "M",
         postedBy:2
     },
     
     {
         id: 3,
-        userName: "Mohamed Elneny",
         comment: "I disagree with some points mentioned.",
         date: "Sep 27, 2024",
-        gender: "M",
         postedBy:3
     },
     {
         id: 4,
-        userName: "Fatima Koshary",
         comment: "Can you provide more details on this topic?",
         date: "Aug 1, 2024",
-        gender: "F",
         postedBy:4
     },
     {
         id: 5,
-        userName: "Eneam Salousa",
         comment: "Can you provide more details on this topic?",
         date: "Aug 17, 2024",
-        gender: "F",
-        postedBy:4
+        postedBy:5
     }
 ];
-const initialLength = data.length;
+let users=[
+    {
+        id:1,
+        userName: "Aly Hany", 
+        gender: "M",
+        src:"https://i.ibb.co/Dr2ZcHQ/IMG-20231027-WA0082.jpg"
+    },
+    {
+        id:2,
+        userName: "Samir Kamouna", 
+        gender: "M",
+        src:""
+    },
+    {
+        id:3,
+        userName: "Mohamed Elneny", 
+        gender: "M",
+        src:""
+    },
+    {
+        id:4,
+        userName: "Fatima Koshary", 
+        gender: "F",
+        src:""
+    },
+    {
+        id:5,
+        userName: "Eneam Salousa", 
+        gender: "F",
+        src:""
+    }
+];
+comments = comments.map(comment=> ({
+    ...comment,
+     userName: users.find(user => user.id === comment.postedBy)?.userName,
+     gender: users.find(user => user.id === comment.postedBy)?.gender,
+     src: users.find(user => user.id === comment.postedBy)?.src
+  }));
+  //Comments APIs
+const initialLength = comments.length;
 app.get('/comments/get/:id',(req,res)=>{
     const id = parseInt(req.params.id,10);
     if(!isNaN(id)){
-        const comment = data.find(comment=>comment.id===id);
+        const comment = comments.find(comment=>comment.id===id);
         if (comment) {
             res.json(comment);
         } else {
@@ -59,32 +86,37 @@ app.get('/comments/get/:id',(req,res)=>{
 
 })
 app.get('/comments/getAll', (req, res) => {
-    res.json(data);
+    res.json(comments);
 })
 app.get('/comments/myComments/:id',(req,res)=>{
     const id = parseInt(req.params.id,10);
-    const myComments = data.filter(comment=>comment.postedBy===id);
+    const myComments = comments.filter(comment=>comment.postedBy===id);
     res.json(myComments);
 })
 app.post('/comments/add',(req,res)=>{
 let comment = req.body;
+comment.id=GenerateCommentId();
 if (!comment || Object.keys(comment).length === 0) {
     return res.status(400).send('No comment provided');
   }
-  data.push(comment);
+  comments.push(comment);
   res.status(201).send('Comment added successfully');
 })
 app.delete('/comments/delete/:id',(req,res)=>{
     const deletedId = parseInt(req.params.id);
     if(!isNaN(deletedId)){
-        data = data.filter(comment=>comment.id!==deletedId);
+        comments = comments.filter(comment=>comment.id!==deletedId);
     }
-    if (data.length < initialLength) {
+    if (comments.length < initialLength) {
         res.status(200).send('Comment deleted successfully');
       } else {
         res.status(404).send('Comment not found');
       }
 })
+//UsersApi
+app.get('/users/loggedIn', (req, res) => {
+    res.json(users[0]);
+});
 app.listen(3004, () => {
     console.log("Server is running on port 3004");
 });
