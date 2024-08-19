@@ -95,12 +95,13 @@ app.get('/comments/myComments/:id',(req,res)=>{
 })
 app.post('/comments/add',(req,res)=>{
 let comment = req.body;
-comment.id=GenerateCommentId();
+comment.id =  (Date.now()%1000000)+ Math.floor(Math.random() * 1000);
+console.log(comment.id);
 if (!comment || Object.keys(comment).length === 0) {
     return res.status(400).send('No comment provided');
   }
   comments.push(comment);
-  res.status(201).send('Comment added successfully');
+  res.status(201).send({ message: 'Comment added successfully', id: comment.id });
 })
 app.delete('/comments/delete/:id',(req,res)=>{
     const deletedId = parseInt(req.params.id);
