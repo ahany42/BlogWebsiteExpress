@@ -114,6 +114,23 @@ app.delete('/comments/delete/:id',(req,res)=>{
         res.status(404).send('Comment not found');
       }
 })
+app.patch('/comments/edit/:id',(req,res)=>{
+    const editedId = parseInt(req.params.id);
+    const updates = req.body;
+    const editedComment = comments.find(comment=>comment.id === editedId);
+    if(!editedComment){
+        return res.status(404).json({error:"User Not Found"});
+    }
+    else{
+        Object.assign(editedComment, updates);
+        const today = new Date();
+        const options = { year: 'numeric', month: 'short', day: '2-digit' };
+        const formattedDate = today.toLocaleDateString('en-US', options);
+        const dateString = formattedDate.toString(); 
+        editedComment.date="edited at "+dateString;
+    }
+    res.json({ message: 'Comment updated successfully' });
+})
 //UsersApi
 app.get('/users/loggedIn', (req, res) => {
     res.json(users[0]);
