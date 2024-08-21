@@ -136,7 +136,7 @@ app.patch('/comments/edit/:id',(req,res)=>{
         editedComment.date="edited at "+dateString;
     }
     console.log(editedComment);
-    res.json({ message: 'Comment updated successfully' });
+    res.json({ message: 'Comment updated successfully',date:editedComment.date,comment:editedComment.comment });
 })
 //UsersApi
 app.get('/users/loggedIn', (req, res) => {
