@@ -117,9 +117,10 @@ app.delete('/comments/delete/:id',(req,res)=>{
 app.patch('/comments/edit/:id',(req,res)=>{
     const editedId = parseInt(req.params.id);
     const updates = req.body;
+    console.log(editedId);
     const editedComment = comments.find(comment=>comment.id === editedId);
     if(!editedComment){
-        return res.status(404).json({error:"User Not Found"});
+        return res.status(404).json({error:"Comment Not Found"});
     }
     else{
         Object.assign(editedComment, updates);
@@ -129,6 +130,7 @@ app.patch('/comments/edit/:id',(req,res)=>{
         const dateString = formattedDate.toString(); 
         editedComment.date="edited at "+dateString;
     }
+    console.log(editedComment);
     res.json({ message: 'Comment updated successfully' });
 })
 //UsersApi
