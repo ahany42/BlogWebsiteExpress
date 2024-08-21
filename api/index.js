@@ -69,6 +69,10 @@ comments = comments.map(comment=> ({
      gender: users.find(user => user.id === comment.postedBy)?.gender,
      src: users.find(user => user.id === comment.postedBy)?.src
   }));
+  app.get('/',(req,res)=>{
+    res.write("Apis are working");
+    res.end();
+  })
   //Comments APIs
 const initialLength = comments.length;
 app.get('/comments/get/:id',(req,res)=>{
