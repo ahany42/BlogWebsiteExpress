@@ -3,6 +3,7 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 app.use(express.json());
+const port = process.env.PORT || 3004;
 let comments = [
     {
         id: 2,
@@ -68,6 +69,10 @@ comments = comments.map(comment=> ({
      gender: users.find(user => user.id === comment.postedBy)?.gender,
      src: users.find(user => user.id === comment.postedBy)?.src
   }));
+  app.get('/',(req,res)=>{
+    res.write("Apis are working");
+    res.end();
+  })
   //Comments APIs
 const initialLength = comments.length;
 app.get('/comments/get/:id',(req,res)=>{
@@ -137,6 +142,6 @@ app.patch('/comments/edit/:id',(req,res)=>{
 app.get('/users/loggedIn', (req, res) => {
     res.json(users[0]);
 });
-app.listen(3004, () => {
-    console.log("Server is running on port 3004");
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });
