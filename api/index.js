@@ -13,7 +13,7 @@ let comments = [
         replies:[{
         id: 2,
         reply: "reply 1",
-        date: "Jun 26, 2024"
+        date: "17 : 30 , 26 Jun 24"
         },{
             id: 4,
             reply: "reply 2",
@@ -26,21 +26,21 @@ let comments = [
     {
         id: 3,
         comment: "I disagree with some points mentioned.",
-        date: "12 : 00 26 , Jul 24",
+        date: "12 : 00 , 26 Jul 24",
         postedBy:3,
         replies:[]
     },
     {
         id: 4,
         comment: "Can you provide more details on this topic?",
-        date: "11 : 00 28 , Jul 24",
+        date: "11 : 00 , 28 Jul 24",
         postedBy:4,
         replies:[]
     },
     {
         id: 5,
         comment: "Can you provide more details on this topic?",
-        date: "12 : 00 16 , Aug 24",
+        date: "12 : 00 , 16 Aug 24",
         postedBy:5,
         replies:[]
     }
