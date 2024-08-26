@@ -143,9 +143,9 @@ app.patch('/comments/edit/:id',(req,res)=>{
     }
     else{
         Object.assign(editedComment, updates);
-        const today = new Date();
-        const options = { year: 'numeric', month: 'short', day: '2-digit' };
-        const formattedDate = today.toLocaleDateString('en-US', options);
+        const now = new Date();
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const formattedDate =`${now.getHours().toString().padStart(2, '0')} : ${now.getMinutes().toString().padStart(2, '0')} ${now.getDate().toString().padStart(2, '0')} ${monthNames[now.getMonth()].toString().padStart(2, '0')} ${now.getFullYear().toString().slice(-2)}`;
         const dateString = formattedDate.toString(); 
         editedComment.date="edited at "+dateString;
     }
