@@ -171,7 +171,7 @@ app.post('/comments/replies/add/:commentId',(req,res)=>{
     }
       
     })
-app.delete('/comments/replies/delete/:commentId/:replyId',(req,res)=>{
+app.delete('/comments/:commentId/replies/delete/:replyId',(req,res)=>{
     let commentId = parseInt(req.params.commentId);
     let replyId = parseInt(req.params.replyId);
     if(!isNaN(commentId)){
@@ -192,6 +192,9 @@ app.delete('/comments/replies/delete/:commentId/:replyId',(req,res)=>{
             res.status(404).json({ error: 'Comment Id not found' });
         }
     }
+})
+app.patch('comments/:commentId/replies/:replyId', (req, res) => {
+    
 })
 //UsersApi
 app.get('/users/loggedIn', (req, res) => {
