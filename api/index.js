@@ -10,7 +10,17 @@ let comments = [
         comment: "I found this article very informative.",
         date: "Jun 26, 2024",
         postedBy:2,
-        replies:[]
+        replies:[{
+        id: 2,
+        reply: "reply 1",
+        date: "Jun 26, 2024"
+        },{
+            id: 4,
+            reply: "reply 2",
+            date: "Jun 26, 2024"
+        }
+
+    ]
     },
     
     {
@@ -143,13 +153,13 @@ app.patch('/comments/edit/:id',(req,res)=>{
     res.json({ message: 'Comment updated successfully',date:editedComment.date,comment:editedComment.comment });
 })
 //Replies 
-app.post('/comments/replies/add/:id',(req,res)=>{
+app.post('/comments/replies/add/:commentId',(req,res)=>{
     let reply = req.body;
     if (!reply || Object.keys(reply).length === 0) {
         return res.status(400).send('No reply provided');
       }
-    reply.id = comment.id =  (Date.now()%1000000)+ Math.floor(Math.random() * 500);
-    let commentId = parseInt(req.params.id);
+    reply.id =  (Date.now()%1000000)+ Math.floor(Math.random() * 500);
+    let commentId = parseInt(req.params.commentId);
     if(!isNaN(commentId)){
         const comment = comments.find(comment=>comment.id===commentId);
         if (comment) {
