@@ -171,7 +171,7 @@ app.post('/comments/replies/add/:commentId',(req,res)=>{
     }
       
     })
-app.delete('comments/replies/delete/:commentId/:replyId',(req,res)=>{
+app.delete('/comments/replies/delete/:commentId/:replyId',(req,res)=>{
     let commentId = parseInt(req.params.commentId);
     let replyId = parseInt(req.params.replyId);
     if(!isNaN(commentId)){
