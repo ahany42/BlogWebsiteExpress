@@ -8,7 +8,7 @@ let comments = [
     {
         id: 2,
         comment: "I found this article very informative.",
-        date: "Jun 26, 2024",
+        date: "9 : 00 , 26 Jun 24",
         postedBy:2,
         replies:[{
         id: 2,
