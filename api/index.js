@@ -178,11 +178,15 @@ app.delete('/comments/replies/delete/:commentId/:replyId',(req,res)=>{
         const comment = comments.find(comment=>comment.id===commentId);
         if (comment) {
           if(!isNaN(replyId)){
-           comment.replies.filter(reply => reply.id === replyId);
-           res.status(200).send({ message: 'Reply deleted successfully', replies: comment.replies });
-          }
-          else{
-            res.status(404).json({ error: 'Reply Id not found' });
+            const reply = comment.replies.find ( reply => reply.id === replyId);
+            if (reply){
+
+                comment.replies.filter(reply => reply.id === replyId);
+                res.status(200).send({ message: 'Reply deleted successfully', replies: comment.replies });
+            }
+            else{
+              res.status(404).json({ error: 'Reply Id not found' });
+            }
           }
         } else {
             res.status(404).json({ error: 'Comment Id not found' });
