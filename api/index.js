@@ -17,7 +17,7 @@ let comments = [
         },{
             id: 4,
             reply: "reply 2",
-            date: "Jun 26, 2024"
+            date: "17 : 30 26 , Jun 24"
         }
 
     ]
@@ -26,21 +26,21 @@ let comments = [
     {
         id: 3,
         comment: "I disagree with some points mentioned.",
-        date: "Jul 27, 2024",
+        date: "12 : 00 26 , Jul 24",
         postedBy:3,
         replies:[]
     },
     {
         id: 4,
         comment: "Can you provide more details on this topic?",
-        date: "Aug 1, 2024",
+        date: "11 : 00 28 , Jul 24",
         postedBy:4,
         replies:[]
     },
     {
         id: 5,
         comment: "Can you provide more details on this topic?",
-        date: "Aug 17, 2024",
+        date: "12 : 00 16 , Aug 24",
         postedBy:5,
         replies:[]
     }
@@ -145,7 +145,7 @@ app.patch('/comments/edit/:id',(req,res)=>{
         Object.assign(editedComment, updates);
         const now = new Date();
         const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        const formattedDate =`${now.getHours().toString().padStart(2, '0')} : ${now.getMinutes().toString().padStart(2, '0')} ${now.getDate().toString().padStart(2, '0')} ${monthNames[now.getMonth()].toString().padStart(2, '0')} ${now.getFullYear().toString().slice(-2)}`;
+        const formattedDate =`${now.getHours().toString().padStart(2, '0')} : ${now.getMinutes().toString().padStart(2, '0')} , ${now.getDate().toString().padStart(2, '0')} ${monthNames[now.getMonth()].toString().padStart(2, '0')} ${now.getFullYear().toString().slice(-2)}`;
         const dateString = formattedDate.toString(); 
         editedComment.date="edited at "+dateString;
     }
