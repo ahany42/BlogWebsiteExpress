@@ -150,7 +150,6 @@ app.post('/comments/replies/add/:id',(req,res)=>{
       }
     reply.id = comment.id =  (Date.now()%1000000)+ Math.floor(Math.random() * 500);
     let commentId = parseInt(req.params.id);
-    let comment = comments.find(comment => comment.id==commentId);
     if(!isNaN(commentId)){
         const comment = comments.find(comment=>comment.id===commentId);
         if (comment) {
@@ -162,6 +161,24 @@ app.post('/comments/replies/add/:id',(req,res)=>{
     }
       
     })
+app.delete('comments/replies/delete/:commentId/:replyId',(req,res)=>{
+    let commentId = parseInt(req.params.commentId);
+    let replyId = parseInt(req.params.replyId);
+    if(!isNaN(commentId)){
+        const comment = comments.find(comment=>comment.id===commentId);
+        if (comment) {
+          if(!isNaN(replyId)){
+           comment.replies.filter(reply => reply.id === replyId);
+           res.status(200).send({ message: 'Reply deleted successfully', replies: comment.replies });
+          }
+          else{
+            res.status(404).json({ error: 'Reply Id not found' });
+          }
+        } else {
+            res.status(404).json({ error: 'Comment Id not found' });
+        }
+    }
+})
 //UsersApi
 app.get('/users/loggedIn', (req, res) => {
     res.json(users[0]);
