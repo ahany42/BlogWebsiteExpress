@@ -9,26 +9,30 @@ let comments = [
         id: 2,
         comment: "I found this article very informative.",
         date: "Jun 26, 2024",
-        postedBy:2
+        postedBy:2,
+        replies:[]
     },
     
     {
         id: 3,
         comment: "I disagree with some points mentioned.",
         date: "Jul 27, 2024",
-        postedBy:3
+        postedBy:3,
+        replies:[]
     },
     {
         id: 4,
         comment: "Can you provide more details on this topic?",
         date: "Aug 1, 2024",
-        postedBy:4
+        postedBy:4,
+        replies:[]
     },
     {
         id: 5,
         comment: "Can you provide more details on this topic?",
         date: "Aug 17, 2024",
-        postedBy:5
+        postedBy:5,
+        replies:[]
     }
 ];
 let users=[
@@ -138,6 +142,26 @@ app.patch('/comments/edit/:id',(req,res)=>{
     console.log(editedComment);
     res.json({ message: 'Comment updated successfully',date:editedComment.date,comment:editedComment.comment });
 })
+//Replies 
+app.post('/comments/replies/add/:id',(req,res)=>{
+    let reply = req.body;
+    if (!reply || Object.keys(reply).length === 0) {
+        return res.status(400).send('No reply provided');
+      }
+    reply.id = comment.id =  (Date.now()%1000000)+ Math.floor(Math.random() * 500);
+    let commentId = parseInt(req.params.id);
+    let comment = comments.find(comment => comment.id==commentId);
+    if(!isNaN(commentId)){
+        const comment = comments.find(comment=>comment.id===commentId);
+        if (comment) {
+            comment.replies.push(reply);
+            res.status(201).send({ message: 'Reply added successfully', replies: comment.replies });
+        } else {
+            res.status(404).json({ error: 'Comment Id not found' });
+        }
+    }
+      
+    })
 //UsersApi
 app.get('/users/loggedIn', (req, res) => {
     res.json(users[0]);
