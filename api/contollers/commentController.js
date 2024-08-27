@@ -1,4 +1,3 @@
-const express = require('express');
 const { getUsers, getAllUsers } = require('./userController');
 let comments = [
     {
