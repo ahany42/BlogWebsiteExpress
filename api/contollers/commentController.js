@@ -103,6 +103,7 @@ exports.editComment = (req,res)=>{
     else{
         Object.assign(editedComment, updates);
         const now = new Date();
+        now.setHours(now.getHours() + 3);
         const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         const formattedDate =`${now.getHours().toString().padStart(2, '0')} : ${now.getMinutes().toString().padStart(2, '0')} , ${now.getDate().toString().padStart(2, '0')} ${monthNames[now.getMonth()].toString().padStart(2, '0')} ${now.getFullYear().toString().slice(-2)}`;
         const dateString = formattedDate.toString(); 
