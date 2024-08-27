@@ -24,7 +24,7 @@ app.delete('/comments/:commentId/replies/delete/:replyId',commentController.dele
 app.patch('/comments/:commentId/replies/:replyId',commentController.editReply);
     
 //Users
-app.get('/users/loggedInUser',userController.getLoggedInUser);
+app.get('/users/loggedIn',userController.getLoggedInUser);
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
