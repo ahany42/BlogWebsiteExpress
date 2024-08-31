@@ -8,11 +8,13 @@ let comments = [
         replies:[{
         id: 2,
         reply: "reply 1",
-        date: "17 : 30 , 26 Jun 24"
+        date: "17 : 30 , 26 Jun 24",
+        postedBy:2
         },{
             id: 4,
             reply: "reply 2",
-            date: "17 : 30 26 , Jun 24"
+            date: "17 : 30 26 , Jun 24",
+            postedBy:3
         }
 
     ]
