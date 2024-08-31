@@ -33,4 +33,18 @@ let users=[
 exports.getLoggedInUser = (req,res)=>{
     res.json(users[0]);
 }
+exports.getUser = (req,res)=>{
+    const id = parseInt(req.params.id,10);
+    if(!isNaN(id)){
+        const user = users.find(user=>user.id===id);
+        if (user) {
+            res.json(user);
+        } else {
+            res.status(404).json({ error: 'User not found' });
+        }
+    }
+    else{
+        return res.status(400).json({ error: 'ID parameter is missing' });
+    }
+}
 exports.getAllUsers = () => users;

@@ -25,6 +25,7 @@ app.patch('/comments/:commentId/replies/:replyId',commentController.editReply);
     
 //Users
 app.get('/users/loggedIn',userController.getLoggedInUser);
+app.get('/users/get/:id',userController.getUser);
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
