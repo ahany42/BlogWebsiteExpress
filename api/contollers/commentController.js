@@ -148,7 +148,7 @@ exports.deleteReply = (req,res)=>{
         const comment = comments.find(comment=>comment.id===commentId);
         if (comment) {
           if(!isNaN(replyId)){
-            const reply = comment.replies.find ( reply => reply.id === replyId);
+            const reply = comment.replies.find ( reply => reply.id !== replyId);
             if (reply){
 
                 comment.replies=comment.replies.filter(reply => reply.id === replyId);
