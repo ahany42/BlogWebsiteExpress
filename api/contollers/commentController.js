@@ -15,7 +15,18 @@ let comments = [
             reply: "reply 2",
             date: "17 : 30 26 , Jun 24",
             postedBy:3
-        }
+        },
+        {
+            id: 5,
+            reply: "reply 3",
+            date: "17 : 30 26 , Jun 24",
+            postedBy:1
+        },
+        {    id: 6,
+            reply: "reply 4",
+            date: "17 : 30 26 , Jun 24",
+            postedBy:1
+        },
 
     ]
     },
