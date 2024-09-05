@@ -140,7 +140,7 @@ exports.deleteReply = (req,res)=>{
             const reply = comment.replies.find ( reply => reply.id === replyId);
             if (reply){
 
-                comment.replies.filter(reply => reply.id === replyId);
+                comment.replies=comment.replies.filter(reply => reply.id === replyId);
                 res.status(200).send({ message: 'Reply deleted successfully', replies: comment.replies });
             }
             else{
