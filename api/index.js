@@ -21,7 +21,7 @@ app.patch('/comments/edit/:id',commentController.editComment);
 //Replies 
 app.post('/comments/replies/add/:commentId',commentController.addReply);
 app.delete('/comments/:commentId/replies/delete/:replyId',commentController.deleteReply);
-app.patch('/comments/:commentId/replies/:replyId',commentController.editReply);
+app.patch('/comments/:commentId/replies/edit/:replyId',commentController.editReply);
     
 //Users
 app.get('/users/loggedIn',userController.getLoggedInUser);
