@@ -205,6 +205,6 @@ exports.editReply = (req,res)=>{
         const formattedDate =`${now.getHours().toString().padStart(2, '0')} : ${now.getMinutes().toString().padStart(2, '0')} , ${now.getDate().toString().padStart(2, '0')} ${monthNames[now.getMonth()].toString().padStart(2, '0')} ${now.getFullYear().toString().slice(-2)}`;
         const dateString = formattedDate.toString(); 
         editedReply.date="edited at "+dateString;
+        res.status(200).send({ message: 'Reply edited successfully'});
     }
-    res.json({ message: 'Reply updated successfully',date:editedReply.date,reply:editedReply.reply });
 }
