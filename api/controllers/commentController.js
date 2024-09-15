@@ -186,8 +186,8 @@ exports.deleteReply = (req,res)=>{
     }
 }
 exports.editReply = (req,res)=>{
-    const editedReplyId = parseInt(req.params.commentId);
-    const editedCommentId = parseInt(req.params.replyId);
+    const editedReplyId = parseInt(req.params.replyId);
+    const editedCommentId = parseInt(req.params.commentId);
     const updates = req.body;
     const editedComment = comments.find(comment=>comment.id === editedCommentId);
     if(!editedComment){
