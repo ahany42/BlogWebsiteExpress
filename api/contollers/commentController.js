@@ -7,23 +7,23 @@ let comments = [
         postedBy:2,
         replies:[{
         id: 2,
-        reply: "reply 1",
+        reply: "Same For Me",
         date: "17 : 30 , 26 Jun 24",
         postedBy:2
         },{
             id: 4,
-            reply: "reply 2",
+            reply: "YESSS! I Agree",
             date: "17 : 30 26 , Jun 24",
             postedBy:3
         },
         {
             id: 5,
-            reply: "reply 3",
+            reply: "To be honest , It could be better",
             date: "17 : 30 26 , Jun 24",
             postedBy:1
         },
         {    id: 6,
-            reply: "reply 4",
+            reply: "Thanks For Sharing",
             date: "17 : 30 26 , Jun 24",
             postedBy:1
         },
@@ -36,7 +36,30 @@ let comments = [
         comment: "I disagree with some points mentioned.",
         date: "12 : 00 , 26 Jul 24",
         postedBy:3,
-        replies:[]
+        replies:[{
+            id: 2,
+            reply: "Same For Me",
+            date: "17 : 30 , 26 Jun 24",
+            postedBy:2
+            },{
+                id: 4,
+                reply: "YESSS! I Agree",
+                date: "17 : 30 26 , Jun 24",
+                postedBy:3
+            },
+            {
+                id: 5,
+                reply: "To be honest , It could be better",
+                date: "17 : 30 26 , Jun 24",
+                postedBy:1
+            },
+            {    id: 6,
+                reply: "Thanks For Sharing",
+                date: "17 : 30 26 , Jun 24",
+                postedBy:1
+            },
+    
+        ]
     },
     {
         id: 4,
