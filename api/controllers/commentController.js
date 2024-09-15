@@ -195,6 +195,9 @@ exports.editReply = (req,res)=>{
     }
     else{
         const editedReply = editedComment.replies.find(reply=>reply.id===editedReplyId)
+        if(!editedReply){
+            return res.status(404).json({error:"Reply Not Found"});
+        }
         Object.assign(editedReply, updates);
         const now = new Date();
         now.setHours(now.getHours() + 3);
@@ -203,5 +206,5 @@ exports.editReply = (req,res)=>{
         const dateString = formattedDate.toString(); 
         editedReply.date="edited at "+dateString;
     }
-    res.json({ message: 'Reply updated successfully',date:editedReply.date,comment:editedReply.reply });
+    res.json({ message: 'Reply updated successfully',date:editedReply.date,reply:editedReply.reply });
 }

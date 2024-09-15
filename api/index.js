@@ -4,8 +4,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 const port = process.env.PORT || 3004;
-const userController = require('./contollers/userController');
-const commentController = require('./contollers/commentController');
+const userController = require('./controllers/userController');
+const commentController = require('./controllers/commentController');
 
 app.get('/',(req,res)=>{
     res.write("Apis are working");
