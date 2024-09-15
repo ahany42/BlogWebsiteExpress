@@ -107,7 +107,6 @@ exports.deleteComment = (req,res)=>{
 exports.editComment = (req,res)=>{
     const editedId = parseInt(req.params.id);
     const updates = req.body;
-    console.log(editedId);
     const editedComment = comments.find(comment=>comment.id === editedId);
     if(!editedComment){
         return res.status(404).json({error:"Comment Not Found"});
@@ -164,5 +163,22 @@ exports.deleteReply = (req,res)=>{
     }
 }
 exports.editReply = (req,res)=>{
-
+    const editedReplyId = parseInt(req.params.commentId);
+    const editedCommentId = parseInt(req.params.replyId);
+    const updates = req.body;
+    const editedComment = comments.find(comment=>comment.id === editedCommentId);
+    if(!editedComment){
+        return res.status(404).json({error:"Comment Not Found"});
+    }
+    else{
+        const editedReply = editedComment.replies.find(reply=>reply.id===editedReplyId)
+        Object.assign(editedReply, updates);
+        const now = new Date();
+        now.setHours(now.getHours() + 3);
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const formattedDate =`${now.getHours().toString().padStart(2, '0')} : ${now.getMinutes().toString().padStart(2, '0')} , ${now.getDate().toString().padStart(2, '0')} ${monthNames[now.getMonth()].toString().padStart(2, '0')} ${now.getFullYear().toString().slice(-2)}`;
+        const dateString = formattedDate.toString(); 
+        editedReply.date="edited at "+dateString;
+    }
+    res.json({ message: 'Reply updated successfully',date:editedReply.date,comment:editedReply.reply });
 }
