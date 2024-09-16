@@ -22,7 +22,7 @@ app.patch('/comments/edit/:id',commentController.editComment);
 app.post('/comments/replies/add/:commentId',commentController.addReply);
 app.delete('/comments/:commentId/replies/delete/:replyId',commentController.deleteReply);
 app.patch('/comments/:commentId/replies/edit/:replyId',commentController.editReply);
-    
+
 //Users
 app.get('/users/loggedIn',userController.getLoggedInUser);
 app.get('/users/get/:id',userController.getUser);
