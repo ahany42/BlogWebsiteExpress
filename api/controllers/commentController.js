@@ -174,7 +174,7 @@ exports.deleteReply = (req,res)=>{
             if (reply){
 
                 comment.replies=comment.replies.filter(reply => reply.id !== replyId);
-                res.status(200).send({ message: 'Reply deleted successfully', replies: comment.replies });
+                res.status(200).send({ message: 'Reply deleted successfully', replies: comment.replies,updatedComment:comment });
             }
             else{
               res.status(404).json({ error: 'Reply Id not found' });
@@ -205,6 +205,6 @@ exports.editReply = (req,res)=>{
         const formattedDate =`${now.getHours().toString().padStart(2, '0')} : ${now.getMinutes().toString().padStart(2, '0')} , ${now.getDate().toString().padStart(2, '0')} ${monthNames[now.getMonth()].toString().padStart(2, '0')} ${now.getFullYear().toString().slice(-2)}`;
         const dateString = formattedDate.toString(); 
         editedReply.date="edited at "+dateString;
-        res.json({ message: 'Comment updated successfully',date:editedReply.date,reply:editedReply.reply });
+        res.json({ message: 'Comment updated successfully',date:editedReply.date,reply:editedReply.reply,updatedComment:comment });
     }
 }
