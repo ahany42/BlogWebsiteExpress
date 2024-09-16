@@ -157,7 +157,7 @@ exports.addReply = (req,res)=>{
         const comment = comments.find(comment=>comment.id===commentId);
         if (comment) {
             comment.replies.push(reply);
-            res.status(201).send({ message: 'Reply added successfully', replies: comment.replies });
+            res.status(201).send({ message: 'Reply added successfully', replies: comment.replies ,newReply:reply});
         } else {
             res.status(404).json({ error: 'Comment Id not found' });
         }
